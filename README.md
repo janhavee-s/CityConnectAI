@@ -1,1 +1,1 @@
-# CityConnectAI
+# SIC - HACKATHON
