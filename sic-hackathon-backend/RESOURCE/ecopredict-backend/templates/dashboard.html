@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EcoPredict Dashboard</title>
+    <style>
+        body { font-family: Arial; margin: 40px; background:#f5f5f5;}
+        .card { background:white; padding:20px; border-radius:8px; margin-top:20px; }
+        button { padding:8px 16px; }
+        select, input { padding:6px; margin-right:10px; }
+        pre { white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+
+<h1>EcoPredict – AI Mineral Forecast</h1>
+
+<form method="post">
+    <label>Mineral:</label>
+    <select name="mineral_id">
+        {% for m in minerals %}
+            <option value="{{m.id}}"
+                {% if selected_mineral == m.id %}selected{% endif %}>
+                {{m.name}}
+            </option>
+        {% endfor %}
+    </select>
+
+    <label>Model:</label>
+    <select name="model">
+        <option value="ARIMA" {% if selected_model == "ARIMA" %}selected{% endif %}>ARIMA</option>
+        <option value="RandomForest" {% if selected_model == "RandomForest" %}selected{% endif %}>Random Forest</option>
+    </select>
+
+    <label>Horizon:</label>
+    <input type="number" name="horizon"
+       min="1" max="12"
+       value="{{ selected_horizon or 6 }}">
+
+       <label>
+        <input type="checkbox" name="state_view"
+               {% if selected_state_view %}checked{% endif %}>
+        State-wise View
+      </label>
+      
+      {% if selected_state_view %}
+      <select name="state">
+        {% for s in states %}
+          <option value="{{s}}"
+            {% if selected_state == s %}selected{% endif %}>
+            {{s}}
+          </option>
+        {% endfor %}
+      </select>
+      {% endif %}
+
+    <button type="submit">Generate</button>
+</form>
+
+{% if insight %}
+<div class="card">
+    <h2>AI Explanation</h2>
+    <pre>{{ insight }}</pre>
+</div>
+
+<div class="card">
+    <h3>Forecast Summary</h3>
+    <p>Current: {{ summary.current }}</p>
+    <p>Average Forecast: {{ summary.forecast_avg }}</p>
+    <p>Change: {{ summary.pct_change }}%</p>
+</div>
+{% endif %}
+
+</body>
+</html>

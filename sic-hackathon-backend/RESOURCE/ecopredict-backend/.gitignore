@@ -1,0 +1,72 @@
+# ----------------------
+# Python
+# ----------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+venv/
+env/
+ecopredict/
+.venv/
+
+# Environment variables
+.env
+.env.*
+
+# Logs
+*.log
+
+# ----------------------
+# FastAPI / Uvicorn
+# ----------------------
+*.sqlite3
+*.db
+
+# ----------------------
+# Jupyter
+# ----------------------
+.ipynb_checkpoints/
+
+# ----------------------
+# Data files (optional - adjust if needed)
+# ----------------------
+*.csv
+*.xlsx
+*.parquet
+
+# If you WANT specific datasets tracked,
+# remove the extension rule above and add:
+# !important_dataset.csv
+
+# ----------------------
+# Model files
+# ----------------------
+*.pkl
+*.joblib
+*.model
+
+# ----------------------
+# macOS
+# ----------------------
+.DS_Store
+
+# ----------------------
+# VS Code
+# ----------------------
+.vscode/
+
+# ----------------------
+# PyCharm
+# ----------------------
+.idea/
+
+# ----------------------
+# Build / dist
+# ----------------------
+build/
+dist/
+*.egg-info/
